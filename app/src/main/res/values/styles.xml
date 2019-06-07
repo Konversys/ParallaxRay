@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="DarkTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="android:colorSecondary">#424242</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+    </style>
+
+</resources>

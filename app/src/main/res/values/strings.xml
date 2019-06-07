@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Parallax</string>
+    <string name="schedule">Расписание</string>
+    <string name="schedule_search">Поиск направлений</string>
+    <string name="schedule_no_found">Раписание не найдено</string>
+    <string name="schedule_no_found_advice">Выберите другой поезд или дату</string>
+    <string name="schedule_arrival">Прибытия</string>
+    <string name="schedule_stop">Стоянка</string>
+    <string name="schedule_departure">Отправление</string>
+    <string name="schedule_start_load">Отправление</string>
+
+    <string name="wagon">Вагон</string>
+    <string name="wagon_top_places">верхние места</string>
+    <string name="wagon_bottom_places">нижние места</string>
+    <string name="wagon_arrival">Станция отправления</string>
+    <string name="wagon_departure">Станция прибытия</string>
+    <string name="wagon_with_linen">Постельное белье</string>
+    <string name="wagon_with_children">С детьми</string>
+    <string name="wagon_with_animal">С животными</string>
+    <string name="wagon_exit_now_places">Выход</string>
+    <string name="wagon_exit_now_linens">Белье</string>
+
+    <string name="goods">Товары</string>
+    <string name="goods_search">Поиск товаров</string>
+
+    <string name="number_char">#</string>
+    <string name="rub">руб.</string>
+    <string name="count">Количество</string>
+
+    <string name="cancel">Отменить</string>
+    <string name="add">Добавить</string>
+    <string name="change">Изменить</string>
+    <string name="clear">Очистить</string>
+    <string name="loading">Загрузка</string>
+</resources>
