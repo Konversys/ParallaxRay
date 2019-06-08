@@ -5,6 +5,7 @@ import com.squareup.moshi.Json;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.konverdev.parallax.model.classes.Station;
 import ru.konverdev.parallax.utils.tools.TimeConverter;
 
 public class Stations {
@@ -98,11 +99,11 @@ public class Stations {
         this.startDate = startDate;
     }
 
-    public ArrayList<ru.konverdev.parallax.model.Station> GetStations() {
-        ArrayList<ru.konverdev.parallax.model.Station> stations = new ArrayList<>();
+    public ArrayList<Station> GetStations() {
+        ArrayList<Station> stations = new ArrayList<>();
         int count = 0;
         for (Stop station : getStops()) {
-            ru.konverdev.parallax.model.Station item = new ru.konverdev.parallax.model.Station(
+            Station item = new Station(
                     ++count,
                     station.getStation().getTitle(),
                     station.getStation().getStationTypeName(),

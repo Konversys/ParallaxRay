@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">Parallax</string>
     <string name="schedule">Расписание</string>
-    <string name="schedule_search">Поиск направлений</string>
-    <string name="schedule_no_found">Раписание не найдено</string>
-    <string name="schedule_no_found_advice">Выберите другой поезд или дату</string>
-    <string name="schedule_arrival">Прибытия</string>
+    <string name="direction_selected_train">Поезд: </string>
+    <string name="direction_selected_date">Дата: </string>
+    <string name="direction_selected_valid">Статус: </string>
+    <string name="direction_selected_valid_ok">Расписание найдено</string>
+    <string name="direction_selected_valid_no">Расписание не найдено</string>
+    <string name="direction_datepicker">Выберите дату</string>
+    <string name="direction_search">Поиск направлений</string>
+    <string name="direction_not_found">Раписание не найдено</string>
+    <string name="direction_not_found_advice">Выберите другой поезд или дату</string>
+    <string name="direction_start_load">К расписанию</string>
+    <string name="schedule_arrival">Прибытие</string>
     <string name="schedule_stop">Стоянка</string>
     <string name="schedule_departure">Отправление</string>
-    <string name="schedule_start_load">Отправление</string>
 
     <string name="wagon">Вагон</string>
     <string name="wagon_top_places">верхние места</string>
@@ -26,10 +32,17 @@
     <string name="number_char">#</string>
     <string name="rub">руб.</string>
     <string name="count">Количество</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="no_select">Не выбрано</string>
 
+    <string name="navigation_drawer_open">Меню навигации открыто</string>
+    <string name="navigation_drawer_close">Меню навигации закрыто</string>
+
+    <string name="error">Ошибка…</string>
     <string name="cancel">Отменить</string>
     <string name="add">Добавить</string>
     <string name="change">Изменить</string>
     <string name="clear">Очистить</string>
     <string name="loading">Загрузка</string>
+
 </resources>

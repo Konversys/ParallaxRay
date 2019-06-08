@@ -1,15 +1,15 @@
-package ru.konverdev.parallax.model;
+package ru.konverdev.parallax.model.classes;
 
 import com.squareup.moshi.Json;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.annotations.PrimaryKey;
-import ru.konverdev.parallax.utils.tools.Tools;
 
 public class Direction extends RealmObject {
     @PrimaryKey
@@ -73,6 +73,7 @@ public class Direction extends RealmObject {
     }
 
     public static void SaveDirections(final List<Direction> directions) {
+        directions.forEach(x -> x.id = UUID.randomUUID().toString());
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(new Realm.Transaction() {
             @Override

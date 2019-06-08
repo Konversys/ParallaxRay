@@ -4,8 +4,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import ru.konverdev.parallax.model.Direction;
-import ru.konverdev.parallax.model.Product;
+import ru.konverdev.parallax.model.classes.Direction;
+import ru.konverdev.parallax.model.classes.Product;
 
 public interface ApiParallaxLink {
     @GET(WebAddress.PLX_LINK_DIRECTIONS_VALID)

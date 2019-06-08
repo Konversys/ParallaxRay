@@ -8,11 +8,16 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_altair"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkTheme">
+        <activity android:name=".activity.WagonActivity"></activity>
+        <activity android:name=".activity.SaleActivity" />
+        <activity android:name=".activity.ProductsActivity" />
+        <activity android:name=".activity.ScheduleActivity" />
+        <activity android:name=".activity.DirectionActivity" />
+        <activity android:name=".fragment.DownloadFragment" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="DarkTheme" parent="Theme.AppCompat">
+    <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="android:colorSecondary">#424242</item>

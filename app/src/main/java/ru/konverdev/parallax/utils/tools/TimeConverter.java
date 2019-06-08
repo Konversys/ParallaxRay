@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class TimeConverter {
     public static final String DATE_DAY_FMONTH_YEAR_TIME  = "dd MMM yyyy HH:mm:ss";
+    public static final String DATE_DAY_FMONTH_YEAR  = "dd MMM yyyy";
     public static final String DATE_LINE_YEAR_SMONTH_DAY_TIME  = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_LINE_YEAR_SMONTH_DAY  = "yyyy-MM-dd";
     public static final String DATE_DOTS_DAY_SMONTH_YEAR  = "dd.MM.yyyy";

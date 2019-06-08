@@ -1,4 +1,4 @@
-package ru.konverdev.parallax.model;
+package ru.konverdev.parallax.model.classes;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

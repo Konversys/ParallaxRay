@@ -1,4 +1,4 @@
-package ru.konverdev.parallax.model;
+package ru.konverdev.parallax.model.classes;
 
 import java.util.ArrayList;
 import java.util.Date;
