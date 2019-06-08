@@ -8,9 +8,12 @@ import ru.konverdev.parallax.model.classes.Station;
 import ru.konverdev.parallax.model.yandex_api.Stations;
 
 public class Route {
-    public static final String NO_DIRECTION = "Выберите расписание";
+    public static final String NO_DIRECTION = "Выберите направления";
     public static final String NO_DATE = "Выберите дату отправления";
     public static final String NO_ALL = "Выберите дату отправления";
+    public static final String ERROR_YANDEX = "Не удалось получить список станций";
+    public static final String ERROR_PARALLAX_API = "Не удалось получить список направлений";
+    public static final String ERROR_NO_STATIONS = "Станции не найдены";
 
     Direction direction;
     Date date;

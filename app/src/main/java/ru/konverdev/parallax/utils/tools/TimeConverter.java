@@ -36,12 +36,6 @@ public class TimeConverter {
         return new SimpleDateFormat(pattern).format(new Date(dateTime));
     }
 
-    public static Duration getDifferenceOfStationDates(Date date, Date subject) {
-        if (date == null || subject == null)
-            return null;
-        return new Duration(date.getTime(), subject.getTime());
-    }
-
     public static String getDifference(Date date, Date subject) {
         if (date == null || subject == null)
             return null;

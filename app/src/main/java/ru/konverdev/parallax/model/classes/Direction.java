@@ -9,6 +9,7 @@ import java.util.UUID;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
+import io.realm.RealmResults;
 import io.realm.annotations.PrimaryKey;
 
 public class Direction extends RealmObject {
@@ -112,6 +113,24 @@ public class Direction extends RealmObject {
             return null;
         }
         Direction direction = realm.copyFromRealm(query);
+        realm.close();
+        return direction;
+    }
+
+    public static Direction SetSelectedDirection(Direction direction) {
+        Realm realm = Realm.getDefaultInstance();
+        direction.setSelected(true);
+        RealmResults<Direction> query = realm.where(Direction.class).equalTo("selected", true).findAll();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                if (query.size() > 0){
+                    query.forEach(x -> x.selected = false);
+                }
+                realm.copyToRealmOrUpdate(query);
+                realm.copyToRealmOrUpdate(direction);
+            }
+        });
         realm.close();
         return direction;
     }

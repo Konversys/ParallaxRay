@@ -1,13 +1,16 @@
 package ru.konverdev.parallax.model.classes;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.annotations.PrimaryKey;
+import ru.konverdev.parallax.utils.tools.Tools;
 
 public class Station extends RealmObject {
     public static final int BEFORE_NOW = 1;
@@ -119,6 +122,30 @@ public class Station extends RealmObject {
         this.position = position;
     }
 
+    public static void SaveStations(final List<Station> stations) {
+        stations.forEach(x -> x.id = UUID.randomUUID().toString());
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.where(Station.class).findAll().deleteAllFromRealm();
+                realm.copyToRealm(stations);
+            }
+        });
+        realm.close();
+    }
+
+    public static void CleanStations() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.where(Station.class).findAll().deleteAllFromRealm();
+            }
+        });
+        realm.close();
+    }
+
     public static ArrayList<Station> GetStations() {
         Realm realm = Realm.getDefaultInstance();
         ArrayList<Station> stations = new ArrayList<Station>(realm.copyFromRealm(realm.where(Station.class).findAll()));
@@ -156,5 +183,62 @@ public class Station extends RealmObject {
         station = realm.copyFromRealm(realm.where(Station.class).equalTo("id", id).findFirst());
         realm.close();
         return station;
+    }
+
+    public static Station GetCurrent() {
+        ArrayList<Station> stations = Station.GetStations();
+        int left = 0;
+        int right = stations.size() - 1;
+        int mid;
+        Date now = new Date();
+        if (stations.get(0).getDeparture().after(now)) {
+            mid = 0;
+            return stations.get(0);
+        } else if (stations.get(stations.size() - 1).getArrival().before(now)) {
+            mid = stations.size() - 1;
+            return stations.get(stations.size() - 1);
+        } else {
+            while (!(left >= right)) {
+                mid = left + (right - left) / 2;
+                if (stations.get(mid).getArrival() != null &&
+                        stations.get(mid).getDeparture() != null &&
+                        stations.get(mid).getArrival().before(now) &&
+                        stations.get(mid).getDeparture().after(now)) {
+                    return stations.get(mid);
+                } else if (stations.get(mid).getDeparture() != null &&
+                        stations.get(mid + 1).getArrival() != null &&
+                        stations.get(mid).getDeparture().before(now) &&
+                        stations.get(mid + 1).getArrival().after(now)) {
+                    return stations.get(mid);
+                }
+                if (stations.get(mid).getArrival().after(now))
+                    right = mid;
+                else
+                    left = mid + 1;
+            }
+            return null;
+        }
+    }
+
+    public static ArrayList<Station> RefreshStationsRatio() {
+        ArrayList<Station> stations = Station.GetStations();
+        Station current = GetCurrent();
+        stations.stream().filter(x -> x.getNumber() < current.getNumber()).forEach(x -> x.setPosition(Station.BEFORE_NOW));
+        stations.stream().filter(x -> x.getNumber() >= current.getNumber()).forEach(x -> x.setPosition(Station.AFTER_NOW));
+        try {
+            if (current.getArrival().after(Tools.getNowMSK()) && current.getDeparture().before(Tools.getNowMSK())) {
+                stations.stream().filter(x -> x.getNumber() == current.getNumber()).forEach(x -> x.setPosition(Station.STAY));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealmOrUpdate(stations);
+            }
+        });
+        return stations;
     }
 }

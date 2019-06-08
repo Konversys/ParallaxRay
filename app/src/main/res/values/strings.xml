@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Parallax</string>
     <string name="directions">Направления</string>
-    <string name="direction_selected_train">Поезд: </string>
-    <string name="direction_selected_date">Дата: </string>
-    <string name="direction_selected_valid">Статус: </string>
+    <string name="direction_selected_train">Поезд:</string>
+    <string name="direction_selected_date">Дата:</string>
+    <string name="direction_selected_valid">Статус:</string>
     <string name="direction_selected_valid_ok">Расписание найдено</string>
     <string name="direction_selected_valid_no">Расписание не найдено</string>
     <string name="direction_datepicker">Выберите дату</string>
@@ -13,6 +13,7 @@
     <string name="direction_start_load">К расписанию</string>
 
     <string name="schedule">Расписание</string>
+    <string name="schedule_next_station">Следующая станция:</string>
     <string name="schedule_arrival">Прибытие</string>
     <string name="schedule_stop">Стоянка</string>
     <string name="schedule_departure">Отправление</string>
@@ -30,6 +31,7 @@
 
 
     <string name="inventory">Инвентарь</string>
+    <string name="direction">Начать рейс</string>
 
     <string name="sell">Продажа</string>
     <string name="products">Товары</string>

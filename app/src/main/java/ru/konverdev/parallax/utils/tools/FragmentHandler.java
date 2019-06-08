@@ -8,30 +8,30 @@ import ru.konverdev.parallax.fragment.DownloadFragment;
 import ru.konverdev.parallax.fragment.ErrorFragment;
 
 public class FragmentHandler {
-    public static void Error(FragmentManager fragmentManager, int frame) {
+    private static void Error(FragmentManager fragmentManager) {
         if (fragmentManager == null) {
             return;
         }
-        Empty(fragmentManager, frame);
+        Empty(fragmentManager);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(frame, new ErrorFragment());
+        transaction.add(R.id.Frame, new ErrorFragment());
         transaction.commit();
     }
 
-    public static void Download(FragmentManager fragmentManager, int frame) {
+    public static void Download(FragmentManager fragmentManager) {
         if (fragmentManager == null) {
             return;
         }
-        Empty(fragmentManager, frame);
+        Empty(fragmentManager);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(frame, new DownloadFragment());
+        transaction.add(R.id.Frame, new DownloadFragment());
         transaction.commit();
     }
 
-    public static void Empty(FragmentManager fragmentManager, int frame) {
-        if (fragmentManager.findFragmentById(frame) != null) {
+    public static void Empty(FragmentManager fragmentManager) {
+        if (fragmentManager.findFragmentById(R.id.Frame) != null) {
             fragmentManager.beginTransaction().
-                    remove(fragmentManager.findFragmentById(frame)).commit();
+                    remove(fragmentManager.findFragmentById(R.id.Frame)).commit();
         }
     }
 }
