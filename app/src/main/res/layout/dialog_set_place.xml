@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/DialogSetPlaceCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_close" />
+
+    <AutoCompleteTextView
+        android:id="@+id/DialogSetPlaceFrom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@color/secondaryLightColor"
+        android:completionThreshold="0"
+        android:hint="@string/wagon_arrival"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true" />
+
+    <AutoCompleteTextView
+        android:id="@+id/DialogSetPlaceTo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="15dp"
+        android:background="@color/secondaryLightColor"
+        android:completionThreshold="0"
+        android:hint="@string/wagon_departure"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/DialogSetPlaceLinen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/wagon_with_linen" />
+
+        <CheckBox
+            android:id="@+id/DialogSetPlaceChildren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wagon_with_children" />
+
+        <CheckBox
+            android:id="@+id/DialogSetPlaceAnimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wagon_with_animal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/DialogSetPlaceRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/clear" />
+
+        <Button
+            android:id="@+id/DialogSetPlaceSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="@string/add" />
+    </LinearLayout>
+</LinearLayout>

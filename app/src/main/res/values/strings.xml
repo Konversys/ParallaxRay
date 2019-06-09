@@ -49,6 +49,7 @@
     <string name="error">Ошибка…</string>
     <string name="cancel">Отменить</string>
     <string name="add">Добавить</string>
+    <string name="next">Далее</string>
     <string name="change">Изменить</string>
     <string name="clear">Очистить</string>
     <string name="loading">Загрузка</string>

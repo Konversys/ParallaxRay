@@ -1,24 +1,16 @@
 package ru.konverdev.parallax.activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Notification;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
@@ -29,12 +21,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.konverdev.parallax.R;
-import ru.konverdev.parallax.adapter.AdapterDirections;
-import ru.konverdev.parallax.fragment.ErrorFragment;
+import ru.konverdev.parallax.adapter.AdapterDirection;
 import ru.konverdev.parallax.helper.CustomToast;
 import ru.konverdev.parallax.model.Route;
 import ru.konverdev.parallax.model.classes.Direction;
 import ru.konverdev.parallax.model.classes.Station;
+import ru.konverdev.parallax.model.classes.Wagon;
 import ru.konverdev.parallax.model.yandex_api.Segment;
 import ru.konverdev.parallax.model.yandex_api.Stations;
 import ru.konverdev.parallax.model.yandex_api.Thread;
@@ -44,9 +36,15 @@ import ru.konverdev.parallax.utils.tools.TimeConverter;
 import ru.konverdev.parallax.utils.web.ApiConnector;
 
 public class DirectionActivity extends AppCompatActivity {
+    private static final String NO_NUMBER = "Введите номер вагона";
+    private static final String NO_FACTORY = "Введите заводской номер вагона";
+    private static final String NO_ALL = "Введите порядковый и заводской номера вагона";
+
     private TextView selectedDirection;
     private TextView selectedDate;
-    private TextView selectedValid;
+
+    private static AppCompatEditText numberEt;
+    private static AppCompatEditText factoryEt;
 
     private static FragmentManager fragmentManager;
     private Route route;
@@ -69,13 +67,14 @@ public class DirectionActivity extends AppCompatActivity {
     private void initComponents() {
         selectedDirection = (TextView) findViewById(R.id.AcDirectionSelectedTrain);
         selectedDate = (TextView) findViewById(R.id.AcDirectionSelectedDate);
-        selectedValid = (TextView) findViewById(R.id.AcDirectionSelectedValid);
+        numberEt = (AppCompatEditText) findViewById(R.id.AcDirectionNumber);
+        factoryEt = (AppCompatEditText) findViewById(R.id.AcDirectionFactory);
         fragmentManager = getSupportFragmentManager();
     }
 
     private void initSearch() {
         AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.AcDirectionSearch);
-        search.setAdapter(new AdapterDirections(this));
+        search.setAdapter(new AdapterDirection(this));
         search.setOnItemClickListener((parent, view, position, id) -> {
             Object item = parent.getItemAtPosition(position);
             if (item instanceof Direction) {
@@ -120,6 +119,18 @@ public class DirectionActivity extends AppCompatActivity {
     }
 
     public void clickStartLoad(View view) {
+        String number_str = numberEt.getText().toString();
+        String factory_str = factoryEt.getText().toString();
+        if (number_str.equals("") && factory_str.equals("")) {
+            Toast.makeText(getApplicationContext(), NO_ALL, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (number_str.equals("")) {
+            Toast.makeText(getApplicationContext(), NO_NUMBER, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (factory_str.equals("")) {
+            Toast.makeText(getApplicationContext(), NO_FACTORY, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (route.getDate() != null && route.getDirection() != null) {
             FragmentHandler.Download(fragmentManager);
             GetYandexDir(this, route);
@@ -135,11 +146,9 @@ public class DirectionActivity extends AppCompatActivity {
     private void RefreshView() {
         if (route.getDirection() == null) {
             selectedDirection.setText(getResources().getString(R.string.no_select));
-            selectedValid.setText(getResources().getString(R.string.unknown));
         }
         if (route.getDate() == null) {
             selectedDate.setText(getResources().getString(R.string.no_select));
-            selectedValid.setText(getResources().getString(R.string.unknown));
         }
     }
 
@@ -153,7 +162,8 @@ public class DirectionActivity extends AppCompatActivity {
                 .enqueue(
                         new Callback<ru.konverdev.parallax.model.yandex_api.Direction>() {
                             @Override
-                            public void onResponse(Call<ru.konverdev.parallax.model.yandex_api.Direction> call, Response<ru.konverdev.parallax.model.yandex_api.Direction> response) {
+                            public void onResponse(Call<ru.konverdev.parallax.model.yandex_api.Direction> call,
+                                                   Response<ru.konverdev.parallax.model.yandex_api.Direction> response) {
                                 ArrayList<Segment> segmentsYandex = response.body().getSegments().stream().filter(
                                         x -> x.getThread().getNumber().equals(route.getDirection().getValue())
                                 ).collect(Collectors.toCollection(ArrayList::new));
@@ -185,6 +195,9 @@ public class DirectionActivity extends AppCompatActivity {
                                 if (response.body() != null) {
                                     Station.SaveStations(response.body().GetStations());
                                     Direction.SetSelectedDirection(route.getDirection());
+                                    Wagon.SetWagon(Wagon.COUPE,
+                                            Integer.valueOf(numberEt.getText().toString()),
+                                            Integer.valueOf(factoryEt.getText().toString()));
                                     FragmentHandler.Empty(fragmentManager);
                                     Intent intent = new Intent(activity, ScheduleActivity.class);
                                     activity.startActivity(intent);

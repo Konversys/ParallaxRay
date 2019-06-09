@@ -17,12 +17,12 @@ import java.util.List;
 import ru.konverdev.parallax.R;
 import ru.konverdev.parallax.model.classes.Direction;
 
-public class AdapterDirections extends ArrayAdapter<Direction> {
+public class AdapterDirection extends ArrayAdapter<Direction> {
 
     private static final int START_SEARCH_SUMBOLS = 1;
     private ArrayList<Direction> directions;
 
-    public AdapterDirections(Context context) {
+    public AdapterDirection(Context context) {
         super(context, 0);
     }
 

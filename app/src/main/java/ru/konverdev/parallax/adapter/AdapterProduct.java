@@ -1,4 +1,4 @@
 package ru.konverdev.parallax.adapter;
 
-public class AdapterWagon {
+public class AdapterProduct {
 }

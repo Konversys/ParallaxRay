@@ -9,10 +9,13 @@ import java.util.UUID;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
+import io.realm.RealmResults;
 import io.realm.annotations.PrimaryKey;
 import ru.konverdev.parallax.utils.tools.Tools;
 
 public class Station extends RealmObject {
+    public static final int ATOM = -1;
+
     public static final int BEFORE_NOW = 1;
     public static final int AFTER_NOW = 2;
     public static final int STAY = 3;
@@ -153,11 +156,11 @@ public class Station extends RealmObject {
         return stations;
     }
 
-    public static ArrayList<Station> GetStationsByName(String search) {
-        return GetStationsByName(search, 0);
+    public static ArrayList<Station> FindStations(String search) {
+        return FindStations(search, 0);
     }
 
-    public static ArrayList<Station> GetStationsByName(String search, Integer count) {
+    public static ArrayList<Station> FindStations(String search, Integer count) {
         ArrayList<Station> stations;
         String[] values = search.split(" ");
         Realm realm = Realm.getDefaultInstance();
@@ -177,11 +180,49 @@ public class Station extends RealmObject {
         return stations;
     }
 
-    public static Station GetStationsByID(int id) {
+    public static ArrayList<Station> FindStationsAfter(String search, int number) {
+        return FindStationsAfter(search, number, 0);
+    }
+
+    public static ArrayList<Station> FindStationsAfter(String search, int number, int count) {
+        Realm realm = Realm.getDefaultInstance();
+        ArrayList<Station> stations;
+        String[] values = search.split(" ");
+        RealmQuery<Station> query = realm.where(Station.class).greaterThan("number", number);
+        for (String line : values) {
+            query = query.contains("title", line).and();
+        }
+        if (count <= 0) {
+            stations = new ArrayList<>(realm.copyFromRealm(query.findAll()));
+        } else {
+            stations = new ArrayList<>(realm.copyFromRealm(query.findAll()));
+            if (stations.size() > count) {
+                stations = new ArrayList<>(stations.subList(0, count));
+            }
+        }
+        realm.close();
+        return stations;
+    }
+
+    public static ArrayList<Station> FindStationsAfter(int number) {
+        Realm realm = Realm.getDefaultInstance();
+        ArrayList<Station> stations;
+        stations = new ArrayList<>(realm.copyFromRealm(realm.where(Station.class).greaterThan("number", number).findAll()));
+        realm.close();
+        return stations;
+    }
+
+    public static Station GetStation(int number) {
         Station station;
         Realm realm = Realm.getDefaultInstance();
-        station = realm.copyFromRealm(realm.where(Station.class).equalTo("id", id).findFirst());
-        realm.close();
+        Station query = realm.where(Station.class).equalTo("number", number).findFirst();
+        if (query == null) {
+            realm.close();
+            return null;
+        } else {
+            station = realm.copyFromRealm(query);
+            realm.close();
+        }
         return station;
     }
 

@@ -10,19 +10,19 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
 import ru.konverdev.parallax.R;
+import ru.konverdev.parallax.activity.CoupesActivity;
 import ru.konverdev.parallax.activity.DirectionActivity;
 import ru.konverdev.parallax.activity.ScheduleActivity;
-import ru.konverdev.parallax.activity.WagonActivity;
 import ru.konverdev.parallax.helper.CustomToast;
-import ru.konverdev.parallax.model.classes.Station;
+
 
 public class EnvHandler {
+    private static final String NO_DIRECTION = "Сначала начните рейс";
 
     public static void Init(AppCompatActivity activity, String title) {
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
@@ -48,11 +48,19 @@ public class EnvHandler {
                     Intent intent = new Intent(activity, DirectionActivity.class);
                     activity.startActivity(intent);
                 } else if (item.getTitle() == activity.getResources().getString(R.string.schedule)) {
-                    Intent intent = new Intent(activity, ScheduleActivity.class);
-                    activity.startActivity(intent);
+                    if (!Tools.IsFlight()) {
+                        CustomToast.SnackBarIconError(activity, NO_DIRECTION);
+                    } else {
+                        Intent intent = new Intent(activity, ScheduleActivity.class);
+                        activity.startActivity(intent);
+                    }
                 } else if (item.getTitle() == activity.getResources().getString(R.string.wagon)) {
-                    Intent intent = new Intent(activity, WagonActivity.class);
-                    activity.startActivity(intent);
+                    if (!Tools.IsFlight()) {
+                        CustomToast.SnackBarIconError(activity, NO_DIRECTION);
+                    } else {
+                        Intent intent = new Intent(activity, CoupesActivity.class);
+                        activity.startActivity(intent);
+                    }
                 } else {
                     Toast.makeText(activity.getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
                     actionBar.setTitle(item.getTitle());

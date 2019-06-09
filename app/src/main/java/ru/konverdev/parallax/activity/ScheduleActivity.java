@@ -27,6 +27,11 @@ public class ScheduleActivity extends AppCompatActivity {
         initComponent();
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     private void initComponent() {
         ArrayList<Station> stations = Station.GetStations();
         if (stations == null || stations.isEmpty() || Direction.GetSelectedDirection() == null) {
