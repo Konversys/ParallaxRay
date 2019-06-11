@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Parallax</string>
     <string name="directions">Направления</string>
+    <string name="direction_start">Начать рейс</string>
     <string name="direction_selected_train">Поезд:</string>
     <string name="direction_selected_date">Дата:</string>
     <string name="direction_selected_valid">Статус:</string>

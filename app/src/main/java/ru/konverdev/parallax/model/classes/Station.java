@@ -267,10 +267,14 @@ public class Station extends RealmObject {
         stations.stream().filter(x -> x.getNumber() < current.getNumber()).forEach(x -> x.setPosition(Station.BEFORE_NOW));
         stations.stream().filter(x -> x.getNumber() >= current.getNumber()).forEach(x -> x.setPosition(Station.AFTER_NOW));
         try {
-            if (current.getArrival().after(Tools.getNowMSK()) && current.getDeparture().before(Tools.getNowMSK())) {
+            if (current.getArrival() == null && current.getNumber() == stations.get(0).getNumber()) {
+                stations.get(0).setPosition(Station.STAY);
+            } else if (current.getDeparture() == null && current.getNumber() == stations.get(stations.size() - 1).getNumber()) {
+                stations.get(stations.size() - 1).setPosition(Station.STAY);
+            } else if (current.getArrival() != null && current.getDeparture() != null && current.getArrival().after(Tools.getNowMSK()) && current.getDeparture().before(Tools.getNowMSK())) {
                 stations.stream().filter(x -> x.getNumber() == current.getNumber()).forEach(x -> x.setPosition(Station.STAY));
             }
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Realm realm = Realm.getDefaultInstance();

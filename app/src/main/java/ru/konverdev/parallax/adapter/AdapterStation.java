@@ -36,7 +36,7 @@ public class AdapterStation extends ArrayAdapter<Station> {
         lstHolders = new ArrayList<>();
         lf = LayoutInflater.from(ctx);
         startUpdateTimer();
-        notifyDataSetChanged();
+        Station.RefreshStationsRatio();
     }
 
     private Runnable updateRemainingTimeRunnable = new Runnable() {

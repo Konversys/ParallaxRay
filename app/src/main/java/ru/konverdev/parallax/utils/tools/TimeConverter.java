@@ -11,12 +11,10 @@ public class TimeConverter {
     public static final String DATE_DAY_FMONTH_YEAR  = "dd MMM yyyy";
     public static final String DATE_LINE_YEAR_SMONTH_DAY_TIME  = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_LINE_YEAR_SMONTH_DAY  = "yyyy-MM-dd";
-    public static final String DATE_DOTS_DAY_SMONTH_YEAR  = "dd.MM.yyyy";
     private static final String DAYS_2C = "%02dд. ";
     private static final String HOURS_2C = "%02dч. ";
     private static final String MINUTES_2C = "%02dм. ";
     private static final String SECONDS_2C = "%02dс. ";
-    private static final String ERROR_DIFFERENCE = "Неизвестно";
     private static final int HOURS_IN_DAY = 24;
     private static final int TIME_DISUNITY = 60;
 
@@ -40,8 +38,6 @@ public class TimeConverter {
         if (date == null || subject == null)
             return null;
         Duration duration = new Duration(date.getTime(), subject.getTime());
-        if (duration == null)
-            return ERROR_DIFFERENCE;
         StringBuilder result = new StringBuilder();
 
         long sec = duration.getStandardSeconds();

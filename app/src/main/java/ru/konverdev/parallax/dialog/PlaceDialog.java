@@ -61,7 +61,7 @@ public class PlaceDialog {
         final CheckBox linen = (CheckBox) dialog.findViewById(R.id.DialogSetPlaceLinen);
         fromACTV.setAdapter(new AdapterSimpleStation(dialog.getContext(), Station.ATOM));
         toACTV.setAdapter(new AdapterSimpleStation(dialog.getContext(), Station.ATOM));
-        
+
         fromACTV.setOnItemClickListener((parent, view, position, id) -> {
                     Object item = parent.getItemAtPosition(position);
                     if (item instanceof Station) {

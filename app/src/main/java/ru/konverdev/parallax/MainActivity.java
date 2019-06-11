@@ -22,6 +22,8 @@ import ru.konverdev.parallax.utils.tools.Tools;
 import ru.konverdev.parallax.utils.web.ApiConnector;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String ERROR_PARALLAX_API = "Не удалось получить список направлений";
+
     private static FragmentManager fragmentManager;
     private AppCompatActivity activity;
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<List<Direction>> call, Throwable t) {
-                    CustomToast.SnackBarIconError(activity, Route.ERROR_PARALLAX_API);
+                    CustomToast.SnackBarIconError(activity, ERROR_PARALLAX_API);
                 }
             });
         } else {
@@ -52,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startActivity(){
-        if (Tools.IsFlight()){
+    private void startActivity() {
+        if (Tools.IsFlight()) {
             Intent intent = new Intent(activity, ScheduleActivity.class);
             startActivity(intent);
         } else {

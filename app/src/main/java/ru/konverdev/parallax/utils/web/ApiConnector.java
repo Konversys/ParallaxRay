@@ -6,8 +6,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class ApiConnector {
-    static ApiParallaxLink apiParallaxLink;
-    static ApiYandex apiYandex;
+    private static ApiParallaxLink apiParallaxLink;
+    private static ApiYandex apiYandex;
 
     private static Retrofit getApiConnector(String base_url){
         return new Retrofit.Builder().baseUrl(base_url)

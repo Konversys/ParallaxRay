@@ -24,7 +24,7 @@ public class AdapterCoupe extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private List<Coupe> items = new ArrayList<>();
 
-    public void ResetItems() {
+    private void ResetItems() {
         Wagon wagon = Wagon.GetWagon();
         if (wagon != null && wagon.getCoupes() != null || wagon.getCoupes().size() != 0) {
             this.items = new ArrayList<>(Wagon.GetWagon().getCoupes());
@@ -74,7 +74,6 @@ public class AdapterCoupe extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof AdapterCoupe.OriginalViewHolder) {

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
@@ -38,7 +40,12 @@ import ru.konverdev.parallax.utils.web.ApiConnector;
 public class DirectionActivity extends AppCompatActivity {
     private static final String NO_NUMBER = "Введите номер вагона";
     private static final String NO_FACTORY = "Введите заводской номер вагона";
-    private static final String NO_ALL = "Введите порядковый и заводской номера вагона";
+    private static final String NO_NUMBER_AND_FACTORY = "Введите порядковый и заводской номера вагона";
+    private static final String NO_DIRECTION = "Выберите направления";
+    private static final String NO_DATE = "Выберите дату отправления";
+    private static final String NO_DIRECTION_AND_DATE = "Выберите дату отправления";
+    private static final String ERROR_YANDEX = "Не удалось получить список станций";
+    private static final String ERROR_NO_STATIONS = "Станции не найдены";
 
     private TextView selectedDirection;
     private TextView selectedDate;
@@ -52,9 +59,9 @@ public class DirectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_direction);
         route = new Route();
-        EnvHandler.Init(this, "Начать рейс");
+        setContentView(R.layout.activity_direction);
+        EnvHandler.Init(this, getResources().getString(R.string.direction_start));
         initComponents();
         initSearch();
     }
@@ -122,7 +129,7 @@ public class DirectionActivity extends AppCompatActivity {
         String number_str = numberEt.getText().toString();
         String factory_str = factoryEt.getText().toString();
         if (number_str.equals("") && factory_str.equals("")) {
-            Toast.makeText(getApplicationContext(), NO_ALL, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), NO_NUMBER_AND_FACTORY, Toast.LENGTH_SHORT).show();
             return;
         } else if (number_str.equals("")) {
             Toast.makeText(getApplicationContext(), NO_NUMBER, Toast.LENGTH_SHORT).show();
@@ -135,11 +142,11 @@ public class DirectionActivity extends AppCompatActivity {
             FragmentHandler.Download(fragmentManager);
             GetYandexDir(this, route);
         } else if (route.getDirection() == null && route.getDate() == null) {
-            Toast.makeText(getApplicationContext(), Route.NO_ALL, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), NO_DIRECTION_AND_DATE, Toast.LENGTH_SHORT).show();
         } else if (route.getDate() == null) {
-            Toast.makeText(getApplicationContext(), Route.NO_DATE, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), NO_DATE, Toast.LENGTH_SHORT).show();
         } else if (route.getDirection() == null) {
-            Toast.makeText(getApplicationContext(), Route.NO_DIRECTION, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), NO_DIRECTION, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -169,7 +176,7 @@ public class DirectionActivity extends AppCompatActivity {
                                 ).collect(Collectors.toCollection(ArrayList::new));
                                 if (segmentsYandex.size() <= 0) {
                                     FragmentHandler.Empty(fragmentManager);
-                                    CustomToast.SnackBarIconError(activity, Route.ERROR_YANDEX);
+                                    CustomToast.SnackBarIconError(activity, ERROR_YANDEX);
                                 } else {
                                     GetYandexStations(activity, route, segmentsYandex.get(0).getThread());
                                 }
@@ -179,7 +186,7 @@ public class DirectionActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(Call<ru.konverdev.parallax.model.yandex_api.Direction> call, Throwable t) {
                                 FragmentHandler.Empty(fragmentManager);
-                                CustomToast.SnackBarIconError(activity, Route.ERROR_YANDEX);
+                                CustomToast.SnackBarIconError(activity, ERROR_YANDEX);
                             }
                         }
                 );
@@ -202,14 +209,14 @@ public class DirectionActivity extends AppCompatActivity {
                                     Intent intent = new Intent(activity, ScheduleActivity.class);
                                     activity.startActivity(intent);
                                 } else {
-                                    CustomToast.SnackBarIconError(activity, Route.ERROR_NO_STATIONS);
+                                    CustomToast.SnackBarIconError(activity, ERROR_NO_STATIONS);
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<Stations> call, Throwable t) {
                                 FragmentHandler.Empty(fragmentManager);
-                                CustomToast.SnackBarIconError(activity, Route.ERROR_YANDEX);
+                                CustomToast.SnackBarIconError(activity, ERROR_YANDEX);
                             }
                         }
                 );
