@@ -36,6 +36,7 @@
     <string name="sell">Продажа</string>
     <string name="products">Товары</string>
     <string name="products_search">Поиск товаров</string>
+    <string name="swipe">Cмахните чтобы удалить</string>
 
     <string name="number_char">#</string>
     <string name="rub">руб.</string>

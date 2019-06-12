@@ -4,82 +4,88 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <include layout="@layout/item_product_swipe" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ItemProductLytParent"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:focusable="true"
         android:paddingHorizontal="15dp"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:paddingVertical="@dimen/spacing_medium"
-        android:background="@android:color/white"
-        android:focusable="true">
+        android:paddingVertical="5dp">
+
         <TextView
-            android:textSize="18sp"
-            android:id="@+id/ItemProductTitleNumber"
+            android:id="@+id/ItemProductNumber_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="#"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
             android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/ItemProductNumber"
-            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitleNumber"
-            app:layout_constraintLeft_toRightOf="@id/ItemProductTitleNumber"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductNumber_"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductNumber_" />
+
         <TextView
             android:id="@+id/ItemProductTitle"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitleNumber"
-            app:layout_constraintLeft_toRightOf="@id/ItemProductNumber"
-            android:layout_marginHorizontal="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductNumber_"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductNumber" />
+
         <TextView
             android:id="@+id/ItemProductPrice"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitlePrice"
-            app:layout_constraintRight_toLeftOf="@id/ItemProductTitlePrice"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductPrice_"
+            app:layout_constraintRight_toLeftOf="@id/ItemProductPrice_" />
+
         <TextView
-            android:id="@+id/ItemProductTitlePrice"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/ItemProductPrice_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:text="руб."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/ItemProductImage"
-            app:layout_constraintLeft_toLeftOf="@id/ItemProductTitleNumber"
-            app:layout_constraintTop_toBottomOf="@id/ItemProductTitleNumber"
-            android:layout_marginTop="5dp"
             android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="5dp"
             android:src="@mipmap/ic_image_not_found"
-            android:layout_height="64dp" />
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductNumber_"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductNumber_" />
+
         <TextView
             android:id="@+id/ItemProductCategory"
-            app:layout_constraintTop_toTopOf="@id/ItemProductImage"
-            app:layout_constraintLeft_toRightOf="@id/ItemProductImage"
-            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductImage"
+            app:layout_constraintTop_toTopOf="@id/ItemProductImage" />
+
         <TextView
             android:id="@+id/ItemProductCount"
-            app:layout_constraintTop_toBottomOf="@id/ItemProductCategory"
-            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductCategory" />
+
         <TextView
             android:id="@+id/ItemProductAbout"
-            app:layout_constraintTop_toBottomOf="@id/ItemProductCount"
-            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductCount" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

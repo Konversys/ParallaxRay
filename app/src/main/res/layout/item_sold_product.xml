@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/ItemSimpleProductLyt"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="#"
+        android:id="@+id/ItemSimpleProductNumber_"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductNumber"
+        app:layout_constraintLeft_toRightOf="@id/ItemSimpleProductNumber_"
+        app:layout_constraintBaseline_toBaselineOf="@id/ItemSimpleProductNumber_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductTitle"
+        app:layout_constraintLeft_toRightOf="@id/ItemSimpleProductNumber"
+        app:layout_constraintBaseline_toBaselineOf="@id/ItemSimpleProductNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Цена: "
+        android:id="@+id/ItemSimpleProductPrice_"
+        app:layout_constraintBaseline_toBaselineOf="@id/ItemSimpleProductTitle"
+        app:layout_constraintRight_toLeftOf="@id/ItemSimpleProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductPrice"
+        app:layout_constraintBaseline_toBaselineOf="@id/ItemSimpleProductTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductCount"
+        app:layout_constraintTop_toBottomOf="@id/ItemSimpleProductNumber_"
+        app:layout_constraintLeft_toLeftOf="@id/ItemSimpleProductTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductAbout"
+        app:layout_constraintTop_toBottomOf="@id/ItemSimpleProductCount"
+        app:layout_constraintLeft_toLeftOf="@id/ItemSimpleProductTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/ItemSimpleProductSelled"
+        app:layout_constraintTop_toBottomOf="@id/ItemSimpleProductPrice"
+        app:layout_constraintRight_toRightOf="@id/ItemSimpleProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

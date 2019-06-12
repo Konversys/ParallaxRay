@@ -4,6 +4,7 @@ import com.squareup.moshi.Json;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import io.realm.Realm;
@@ -30,6 +31,21 @@ public class Product extends RealmObject {
     private int sold;
     @Ignore
     private boolean swipe;
+
+    public Product() {
+    }
+
+    public Product(Product product, boolean sale, int total) {
+        this.id = UUID.randomUUID().toString();
+        this.title = product.getTitle();
+        this.category = product.getCategory();
+        this.count = product.getCount();
+        this.about = product.getAbout();
+        this.price = product.getPrice();
+        this.sale = sale;
+        this.sold = 0;
+        this.total = total;
+    }
 
     public String getId() {
         return id;
@@ -196,5 +212,12 @@ public class Product extends RealmObject {
             sum += item.getPrice() * item.getTotal();
         }
         return sum;
+    }
+
+    public static boolean SoldContains(Product product){
+        Realm realm = Realm.getDefaultInstance();
+        boolean result = realm.where(Product.class).equalTo("sale", true).and().equalTo("id", product.getId()).findAll().isEmpty();
+        realm.close();
+        return result;
     }
 }
