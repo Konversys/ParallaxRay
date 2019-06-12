@@ -62,6 +62,13 @@ public class EnvHandler {
                         Intent intent = new Intent(activity, CoupesActivity.class);
                         activity.startActivity(intent);
                     }
+                } else if (item.getTitle() == activity.getResources().getString(R.string.products)) {
+                    if (!Tools.IsFlight()) {
+                        CustomToast.SnackBarIconError(activity, NO_DIRECTION);
+                    } else {
+                        Intent intent = new Intent(activity, CoupesActivity.class);
+                        activity.startActivity(intent);
+                    }
                 } else {
                     Toast.makeText(activity.getApplicationContext(), item.getTitle() + " Selected", Toast.LENGTH_SHORT).show();
                     actionBar.setTitle(item.getTitle());

@@ -31,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include layout="@layout/frame" />
             <!-- dummy content list of new -->
             <include layout="@layout/include_coupes" />
+            <include layout="@layout/frame" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <!--navigation drawer menu-->

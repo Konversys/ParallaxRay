@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/item_product_swipe" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ItemProductLytParent"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:paddingVertical="@dimen/spacing_medium"
+        android:background="@android:color/white"
+        android:focusable="true">
+        <TextView
+            android:textSize="18sp"
+            android:id="@+id/ItemProductTitleNumber"
+            android:text="#"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="18sp"
+            android:id="@+id/ItemProductNumber"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitleNumber"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductTitleNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/ItemProductTitle"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitleNumber"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductNumber"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/ItemProductPrice"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/ItemProductTitlePrice"
+            app:layout_constraintRight_toLeftOf="@id/ItemProductTitlePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/ItemProductTitlePrice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingLeft="5dp"
+            android:text="руб."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/ItemProductImage"
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductTitleNumber"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductTitleNumber"
+            android:layout_marginTop="5dp"
+            android:layout_width="64dp"
+            android:src="@mipmap/ic_image_not_found"
+            android:layout_height="64dp" />
+        <TextView
+            android:id="@+id/ItemProductCategory"
+            app:layout_constraintTop_toTopOf="@id/ItemProductImage"
+            app:layout_constraintLeft_toRightOf="@id/ItemProductImage"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/ItemProductCount"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductCategory"
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/ItemProductAbout"
+            app:layout_constraintTop_toBottomOf="@id/ItemProductCount"
+            app:layout_constraintLeft_toLeftOf="@id/ItemProductCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
