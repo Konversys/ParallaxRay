@@ -15,6 +15,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ru.konverdev.parallax.R;
+import ru.konverdev.parallax.activity.ScheduleActivity;
 import ru.konverdev.parallax.model.classes.Station;
 import ru.konverdev.parallax.utils.tools.TimeConverter;
 import ru.konverdev.parallax.utils.tools.Tools;
@@ -112,6 +113,24 @@ public class AdapterStation extends ArrayAdapter<Station> {
             Station.RefreshStationsRatio();
             if (value == null) {
                 return;
+            }
+            Station station = Station.GetCurrent();
+
+            switch (station.getPosition()) {
+                case Station.STAY:
+                    ScheduleActivity.nextStationTime.setTextColor(Color.RED);
+                    ScheduleActivity.nextStationTime.setText(TimeConverter.getDifference(Tools.getNowMSK(), station.getDeparture()));
+                    break;
+                case Station.AFTER_NOW:
+                    ScheduleActivity.nextStationTime.setTextColor(Color.GREEN);
+                    ScheduleActivity.nextStationTime.setText(TimeConverter.getDifference(Tools.getNowMSK(), station.getArrival()));
+                    break;
+                default:
+                    ScheduleActivity.nextStationTime.setText("Неизвестно");
+                    break;
+            }
+            if (!ScheduleActivity.nextStation.getText().toString().equals(station.getTitle())) {
+                ScheduleActivity.nextStation.setText(station.getTitle());
             }
             switch (value.getPosition()) {
                 case Station.BEFORE_NOW:

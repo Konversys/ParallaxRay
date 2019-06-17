@@ -32,11 +32,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@id/AcScheduleCurrentTrain_" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondaryColor"
-        android:padding="15dp">
+        android:paddingBottom="5dp"
+        android:paddingHorizontal="15dp">
 
         <TextView
             android:id="@+id/AcScheduleNextStation_"
@@ -44,7 +46,6 @@
             android:layout_height="wrap_content"
             android:text="@string/schedule_next_station"
             android:textColor="@color/red"
-            android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@id/AcScheduleNextStation_"
             app:layout_constraintLeft_toRightOf="@id/AcScheduleNextStation_" />
 
@@ -62,11 +62,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/AcScheduleNextStation_" />
-    </androidx.constraintlayout.widget.ConstraintLayout-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
         android:id="@+id/AcScheduleItems"

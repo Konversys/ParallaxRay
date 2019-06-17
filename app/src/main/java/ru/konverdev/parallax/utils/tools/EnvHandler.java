@@ -18,6 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 import ru.konverdev.parallax.R;
 import ru.konverdev.parallax.activity.CoupesActivity;
 import ru.konverdev.parallax.activity.DirectionActivity;
+import ru.konverdev.parallax.activity.ProductsActivity;
+import ru.konverdev.parallax.activity.SaleActivity;
 import ru.konverdev.parallax.activity.ScheduleActivity;
 import ru.konverdev.parallax.helper.CustomToast;
 
@@ -66,7 +68,14 @@ public class EnvHandler {
                     if (!Tools.IsFlight()) {
                         CustomToast.SnackBarIconError(activity, NO_DIRECTION);
                     } else {
-                        Intent intent = new Intent(activity, CoupesActivity.class);
+                        Intent intent = new Intent(activity, ProductsActivity.class);
+                        activity.startActivity(intent);
+                    }
+                } else if (item.getTitle() == activity.getResources().getString(R.string.sell)) {
+                    if (!Tools.IsFlight()) {
+                        CustomToast.SnackBarIconError(activity, NO_DIRECTION);
+                    } else {
+                        Intent intent = new Intent(activity, SaleActivity.class);
                         activity.startActivity(intent);
                     }
                 } else {

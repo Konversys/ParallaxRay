@@ -25,6 +25,7 @@ import ru.konverdev.parallax.adapter.AdapterSimpleProduct;
 import ru.konverdev.parallax.adapter.AdapterSimpleStation;
 import ru.konverdev.parallax.adapter.AdapterSoldProduct;
 import ru.konverdev.parallax.model.classes.Product;
+import ru.konverdev.parallax.utils.tools.EnvHandler;
 
 public class SaleActivity extends AppCompatActivity {
     Button sub;
@@ -51,6 +52,7 @@ public class SaleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale);
+        EnvHandler.Init(this, "Продажа");
         initProductList();
         initAddProductDialog();
         initSellProductDialog();

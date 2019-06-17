@@ -17,6 +17,8 @@ import ru.konverdev.parallax.utils.tools.EnvHandler;
 
 public class ScheduleActivity extends AppCompatActivity {
 
+    public static TextView nextStationTime;
+    public static TextView nextStation;
     private static final String NO_STATIONS = "Станции не найдены";
 
     @Override
@@ -33,6 +35,8 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
+        nextStation = (TextView) findViewById(R.id.AcScheduleNextStation);
+        nextStationTime = (TextView) findViewById(R.id.AcScheduleNextStationTime);
         ArrayList<Station> stations = Station.GetStations();
         if (stations == null || stations.isEmpty() || Direction.GetSelectedDirection() == null) {
             CustomToast.SnackBarIconError(this, NO_STATIONS);

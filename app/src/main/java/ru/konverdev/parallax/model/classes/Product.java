@@ -135,7 +135,7 @@ public class Product extends RealmObject {
                 if (truncate) {
                     realm.where(Product.class).equalTo("sale", isSale).findAll().deleteAllFromRealm();
                 }
-                realm.copyToRealm(products.stream().filter(x -> isSale).collect(Collectors.toList()));
+                realm.copyToRealm(new ArrayList<Product>(products.stream().filter(x -> isSale).collect(Collectors.toList())));
             }
         });
         realm.close();
